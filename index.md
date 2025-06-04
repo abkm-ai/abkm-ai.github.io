@@ -1,7 +1,11 @@
 ---
 layout: splash
-title: "👋 Welcome to Abkm Log Book"
+title: "Abkm Log Book"      # page title shown in browser tab
 permalink: /
+
+# These two lines create the hero banner ↓
+feature_text: "👋 **Welcome to Abkm Log Book**"
+feature_image: null         # or /assets/images/hero.jpg
 ---
 
 Hi, I’m **Abdul**.
