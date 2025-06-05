@@ -5,11 +5,16 @@ permalink: /
 
 feature_text: |
   👋 **Welcome to Abkm Log Book**
+title: "Abkm Log Book"
+permalink: /
+feature_text: |
+  👋 **Welcome to Abkm Log Book**
+feature_image: null
 ---
 
 Hi, I’m **Abdul**.
 
-Welcome to my public notebook—a space where I share my learnings about the evolving landscape of AI and other topics that interest me.
+Welcome to my public notebook—a space where I share my learnings about AI and other topics that interest me.
 
 You’ll find deep dives on topics like:
 
@@ -17,9 +22,8 @@ You’ll find deep dives on topics like:
 * **AI application architecture:** Transformers, vector databases, retrieval‑augmented generation (RAG)
 * **Deep learning & multi‑modality:** models that process vision, text, and audio
 * **Ad‑tech ecosystem:** decoding YouTube Ads, Meta Ads, and more
-* **Personalization at scale:** user modelling, real‑time ranking, feedback loops
-* **Page ranking & relevance:** classic search to LLM‑driven discovery
-* **Machine‑learning primer:** core algorithms, intuition, real‑world cases
+* **Personalization at scale:** user modelling, real‑time ranking
+* **Machine‑learning primer:** core algorithms, real‑world cases
 
 > I use tools like ChatGPT, Gemini, and other LLMs during my research, but the content here reflects my own synthesis, curiosity, and understanding.
 
