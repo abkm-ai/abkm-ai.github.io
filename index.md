@@ -1,6 +1,6 @@
 ---
 layout: splash
-title: "👋 **Welcome to Abkm Log Book**"
+title: "👋 Welcome to Abkm Log Book"
 permalink: /
 author_profile: false
 header:
