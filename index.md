@@ -3,13 +3,20 @@ layout: splash
 title: "Abkm Log Book"
 permalink: /
 
-feature_text: |
-  👋 **Welcome to Abkm Log Book**
-title: "Abkm Log Book"
-permalink: /
-feature_text: |
-  👋 **Welcome to Abkm Log Book**
-feature_image: null
+header:
+  overlay_color: "#ffffff"
+  overlay_filter: "0"
+  overlay_image: null
+  caption: null
+  actions: null
+  cta_label: null
+  cta_url: null
+  caption: null
+  og_image: null
+alternative_title: null
+author_profile: false
+excerpt: "👋 **Welcome to Abkm Log Book**"
+intro: 
 ---
 
 Hi, I’m **Abdul**.
