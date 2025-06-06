@@ -3,7 +3,13 @@ remote_theme: "mmistakes/minimal-mistakes@4.27.1"
 
 plugins:
   - jekyll-remote-theme
-  - jekyll-include-cache 
+  - jekyll-include-cache
+  - jekyll-seo-tag
+
+analytics:
+  provider: "google-gtag"
+  google:
+    tracking_id: "G-YK3JX8FMS2" 
 
 # Navigation bar items
 nav:
@@ -17,3 +23,4 @@ nav:
     url: /tags/
   - title: "FAQ"
     url: /faq/
+
