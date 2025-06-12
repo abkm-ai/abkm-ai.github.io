@@ -9,37 +9,28 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Allow the workflow to write to the repository
-      pages: write    # Allow the workflow to deploy to GitHub Pages
-      id-token: write # Required for OIDC authentication
-
-    environment: # <--- ADD THIS BLOCK
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      contents: write # Crucial for pushing the built site to the main branch
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: true # Checkout submodules (PaperMod)
-          fetch-depth: 0   # Fetch all history for `gh-pages` branch
+          fetch-depth: 0   # Fetch all history
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: '0.147.8' # Specify your Hugo version
-          # extended: true # Uncomment if you use Hugo Extended (if needed by PaperMod, though usually not)
+          hugo-version: '0.147.8' # Use this specific version, or a newer one if you prefer
+          # extended: true # Uncomment if you use Hugo Extended
 
       - name: Build Hugo site
         run: hugo --minify --baseURL "https://abkm-ai.github.io/" # Ensure baseURL matches your config.toml
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to main branch
+        uses: peaceiris/actions-gh-pages@v3 # This action handles pushing the built site
         with:
-          path: ./public # Upload the content of the public directory
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }} # Use the default GitHub token
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Built-in GitHub Actions token
+          publish_dir: ./public # The directory containing your built site
+          publish_branch: main # This is the key: publish directly to the main branch
+          # cname: abkm-ai.github.io # Optional: Uncomment if you have a custom domain and manage CNAME here
