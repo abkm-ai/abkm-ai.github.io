@@ -9,11 +9,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Allow the workflow to write to the repository
+      contents: write # Allow the workflow to write to the repository (to create/update gh-pages)
       pages: write    # Allow the workflow to deploy to GitHub Pages
       id-token: write # Required for OIDC authentication
 
-    environment: # <--- THIS BLOCK IS CRUCIAL FOR actions/deploy-pages
+    environment: # <--- THIS BLOCK IS CRUCIAL AND MAKES gh-pages selectable in GitHub Pages settings
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
@@ -21,14 +21,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          submodules: true # Checkout submodules (PaperMod)
-          fetch-depth: 0   # Fetch all history for `gh-pages` branch
+          submodules: true # Checkout submodules (e.g., your PaperMod theme)
+          fetch-depth: 0   # Fetch all history for `gh-pages` branch creation
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.147.8' # Specify your Hugo version
-          # extended: true # Uncomment if you use Hugo Extended
+          # extended: true # Uncomment if you use Hugo Extended (only if your Hugo installation uses it)
 
       - name: Build Hugo site
         run: hugo --minify --baseURL "https://abkm-ai.github.io/" # Ensure baseURL matches your config.toml
@@ -36,10 +36,10 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public # Upload the content of the public directory
+          path: ./public # Upload the content of the public directory (the built site)
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4 # This action handles deploying to the github-pages environment
         with:
           token: ${{ secrets.GITHUB_TOKEN }} # Use the default GitHub token
