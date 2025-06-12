@@ -1,0 +1,41 @@
+name: Deploy Hugo site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Trigger on pushes to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Allow the workflow to write to the repository
+      pages: write    # Allow the workflow to deploy to GitHub Pages
+      id-token: write # Required for OIDC authentication
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true # Checkout submodules (PaperMod)
+          fetch-depth: 0   # Fetch all history for `gh-pages` branch
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.147.8' # Specify your Hugo version
+          # extended: true # Uncomment if you use Hugo Extended (if needed by PaperMod, though usually not)
+
+      - name: Build Hugo site
+        run: hugo --minify --baseURL "https://abkm-ai.github.io/" # Ensure baseURL matches your config.toml
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public # Upload the content of the public directory
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }} # Use the default GitHub token
