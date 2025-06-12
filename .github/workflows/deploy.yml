@@ -13,6 +13,10 @@ jobs:
       pages: write    # Allow the workflow to deploy to GitHub Pages
       id-token: write # Required for OIDC authentication
 
+    environment: # <--- ADD THIS BLOCK
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
